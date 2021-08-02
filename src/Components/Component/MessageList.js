@@ -9,25 +9,30 @@ export default class MessageList extends Component {
             items: []
         };
     
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+//        this.handleChange = this.handleChange.bind(this);
+//        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({
-            text: event.target.value
+            text: event.target.value,
         });
     }
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         this.setState({
-            // submit: this.state.text
-            text: this.state.text,
+            text: "",
             items: [...this.state.items, this.state.text]
         });
     }
     
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.items !== this.state.items) {
+            console.log('message update')
+        }
+    }
+
     render () {
         return (
             <>
@@ -39,8 +44,6 @@ export default class MessageList extends Component {
                     {this.state.items.map((item, index) => (
                     <p key={index}>{item}</p>))}
                 </div>
-                {/* <p>{this.state.submit}</p>
-                <p>{this.state.author}</p> */}
             </>
         )
     }

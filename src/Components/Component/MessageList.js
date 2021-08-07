@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 
 export default class MessageList extends Component {
     constructor(props) {
@@ -8,10 +10,6 @@ export default class MessageList extends Component {
             author: "Aleks",
             items: []
         };
-    
-//        this.handleChange = this.handleChange.bind(this);
-//        this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     handleChange = (event) => {
@@ -29,7 +27,7 @@ export default class MessageList extends Component {
     
     componentDidUpdate(prevProps, prevState) {
         if (prevState.items !== this.state.items) {
-            console.log('message update')
+            console.log(this.state.author)
         }
     }
 
@@ -37,8 +35,11 @@ export default class MessageList extends Component {
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
-                    <input value={this.state.text} onChange={this.handleChange} />
-                    <button type="submit">Отправить</button>
+                    <TextField value={this.state.text} onChange={this.handleChange} label="" id="outlined-size-small" defaultValue="Small" variant="outlined" size="small"
+                    autoFocus={true} />
+                    <Button type="submit" variant="contained" size="large" color="primary">
+                        Отправить
+                    </Button>
                 </form>
                 <div>
                     {this.state.items.map((item, index) => (

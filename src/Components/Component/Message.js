@@ -1,10 +1,20 @@
-import React from 'react'
+//import React from 'react'
 
-export default function Message(props) {
-    return (
-        <div>
-            <h1 className="Message">Hello, {props.name}!</h1>
-        </div>
-    )
-}
-Message.defaultProps = { name: "World"}
+// export default function Message(props) {
+//     return (
+//         <div>
+//             <h1 className="Message">Hello, {props.name}!</h1>
+//         </div>
+//     )
+// }
+
+// export const Message = ({text, author}) => {
+//     const prevText = usePrev(text);
+//     const prevAuthor = usePrev(author);
+
+//     return (
+//         <div>
+//             {author}: {text}
+//         </div>
+//     );
+// };

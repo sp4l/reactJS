@@ -1,20 +1,13 @@
-//import React from 'react'
+import React, {useContext} from 'react'
+import { ThemeContext } from "../utils/ThemeContext"
 
-// export default function Message(props) {
-//     return (
-//         <div>
-//             <h1 className="Message">Hello, {props.name}!</h1>
-//         </div>
-//     )
-// }
+const Message = ({ text, author }) => {
+    const theme = useContext(ThemeContext)
+    return (
+        <div style={{ backgroundColor: theme }}>
+            {author}: {text}
+        </div>
+    )
+}
 
-// export const Message = ({text, author}) => {
-//     const prevText = usePrev(text);
-//     const prevAuthor = usePrev(author);
-
-//     return (
-//         <div>
-//             {author}: {text}
-//         </div>
-//     );
-// };
+export default Message

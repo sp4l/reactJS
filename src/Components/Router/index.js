@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Switch, Route } from 'react-router-dom'
 import Profile from '../Profile/index'
 import Home from '../Home/index'
 import { ThemeContext } from "../utils/ThemeContext"
+import './style.css'
 
 const Router = () => {
     const [bgColor, setBgColor] = useState("white")
@@ -21,7 +22,7 @@ const Router = () => {
                         <Link to='/profile'>PROFILE</Link>
                     </li>
                 </ul>
-                <button onClick={changeColor}>CHANGE COLOR</button>
+                <button className="but" onClick={changeColor}>CHANGE COLOR</button>
 
                 <Switch>
                     <Route path="/" exact>

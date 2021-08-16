@@ -2,44 +2,24 @@ import './style.css';
 import React, {useState, useEffect, useCallback} from 'react'
 import MessageList from '../Component/MessageList'
 import Form from '../Component/Form'
-import AddChat from '../ChatList/index'
+import Chats from '../ChatList/index'
 import { AUTHOR } from '../../constants';
 import { useParams } from 'react-router-dom';
-
-const initialChats = {
-  chat1: {
-    messages: [{text: 'text', author: AUTHOR.human, id: 'chat1-1'}],
-    name: 'Chat 1',
-    id: 'chat1',
-  },
-  chat2: {
-    messages: [{text: 'text2', author: AUTHOR.human, id: 'chat2-1'}],
-    name: 'Chat 2',
-    id: 'chat2',
-  },
-  chat3: {
-    messages: [],
-    name: 'Chat 3',
-    id: 'chat3',
-  },
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { sendMessage } from '../store/chats/actions';
+import { selectChats } from '../store/selectors';
 
 function Home() {
   const { chatId } = useParams()
 
-  const [chats, setChats] = useState(initialChats)
+  const chats = useSelector(selectChats)
+  const dispatch = useDispatch()
 
   const handleSendMessage = useCallback(
     (newMessage) => {
-      setChats({
-        ...chats,
-        [chatId]: {
-          ...chats[chatId],
-          messages: [...chats[chatId].messages, newMessage]
-        }
-      })
+      dispatch(sendMessage(chatId, newMessage));
     },
-    [chats, chatId]
+    [chatId]
   )
 
   useEffect(() => {
@@ -53,7 +33,7 @@ function Home() {
 
     const timeout = setTimeout(() =>{
       const newMessage = {
-        text: 'I am a robot',
+        text: 'Привет',
         author: AUTHOR.robot,
         id: Date.now()
       }
@@ -66,7 +46,7 @@ function Home() {
 
   return (
     <div className="chatList">
-      <AddChat chats={chats}/>
+      <Chats chats={chats}/>
       {!!chatId && <div>
           <Form onSendMessage={handleSendMessage} />
           <MessageList messages={chats[chatId].messages} />

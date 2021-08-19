@@ -1,21 +1,20 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { AUTHOR } from '../../constants'
+import { useInput } from '../utils/useInput'
 
 const Form = ({ onSendMessage }) => {
-    const [value, setValue] = useState('')
 
-    const handleChange = (event) => {
-        setValue(event.target.value)
-    }
+    const { value, handleChange, reset } = useInput('')
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
         onSendMessage({
             author: AUTHOR.human,
             text: value,
             id: Date.now(),
         })
-        setValue('')
+        reset()
     }
 
     return (

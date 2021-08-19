@@ -4,6 +4,8 @@ import Profile from '../Profile/index'
 import Home from '../Home/index'
 import { ThemeContext } from "../utils/ThemeContext"
 import './style.css'
+import { News } from '../News/News'
+import { NewsFootball } from '../NewsFootball/NewsFootball'
 
 const Router = () => {
     const [bgColor, setBgColor] = useState("white")
@@ -21,6 +23,12 @@ const Router = () => {
                     <li style={{ backgroundColor: bgColor}}>
                         <Link to='/profile'>PROFILE</Link>
                     </li>
+                    <li style={{ backgroundColor: bgColor}}>
+                        <Link to='/news'>NEWS</Link>
+                    </li>
+                    <li style={{ backgroundColor: bgColor}}>
+                        <Link to='/football'>FOOTBALL</Link>
+                    </li>
                 </ul>
                 <button className="but" onClick={changeColor}>CHANGE COLOR</button>
 
@@ -31,6 +39,16 @@ const Router = () => {
                     <Route path="/home/:chatId?"><Home /></Route>
                     <Route path="/profile">
                         <Profile />
+                    </Route>
+                    <Route path="/news">
+                        <News />
+                    </Route>
+                    <Route path="/football">
+                        <NewsFootball />
+                    </Route>
+                    <Route path="/nochat">
+                        <h1>No such chat</h1>
+                        <Link to="/home">HOME</Link>
                     </Route>
                     <Route path="*">
                         404

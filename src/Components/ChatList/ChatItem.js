@@ -1,16 +1,16 @@
+import { ListItem } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import React from 'react';
-import {List, ListItem} from "@material-ui/core"
-import { Link } from 'react-router-dom'
 
-const ChatItem = (props) => {
-    console.log(props)
+export const ChatItem = ({ id, name, onDelete }) => {
+    const handleDelete = () => {
+        onDelete(id)
+    }
+    
     return (
-        <List>
-            <ListItem key={props.chat.id}>
-                <Link to={`/home/${props.chat.id}`}>{props.chat.name}</Link>
-            </ListItem>
-        </List>
+        <ListItem>
+            <Link to={`/home/${id}`}>{name}</Link>
+            <button onClick={handleDelete}>❌</button>
+        </ListItem>
     )
 }
-
-export default ChatItem

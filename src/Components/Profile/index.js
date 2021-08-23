@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-import { store } from '../store'
-import { PROFILE_TOGGLE_SHOW } from '../store/profile/actionTypes'
-import { PROFILE_SET_NAME } from '../store/profile/actionTypes'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeName } from '../store/profile/actions'
 import { selectName } from '../store/selectors'
